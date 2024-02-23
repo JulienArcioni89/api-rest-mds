@@ -11,7 +11,7 @@ Ce projet est une simple API REST qui permet de gérer un carnet d'entrées. Il 
 
 1. Assurez-vous qu'un serveur web est installé et configuré sur votre machine.
 2. Clonez le projet dans le dossier httpdocs de votre serveur web.
-3. Utilisez http://localhost:8888/ApiRest/index.php/carnet en GET et en POST.
+3. Utilisez http://localhost:8888/ApiRest/carnet en GET, en POST et en DELETE.
 
 ## Utilisation
 
@@ -33,10 +33,15 @@ La date doit être au format "dd-mm-yyyy". La requête renverra l'entrée ajout�
 
 Pour récupérer toutes les entrées, envoyez une requête GET à l'URL `/carnet`. La requête renverra un tableau de toutes les entrées en format JSON.
 
+### Supprimer toutes les entrées
+
+Pour supprimer toutes les entrées, envoyez une requête DELETE à l'URL `/carnet`. La requête renverra un message confirmant la suppression de toutes les entrées.
+
 ## Structure du projet
 
 Le projet est composé de trois fichiers principaux :
 
 - `index.php` : C'est le point d'entrée de l'application. Il gère les requêtes entrantes et appelle les fonctions appropriées en fonction de la méthode de la requête.
-- `functions.php` : Ce fichier contient les fonctions `add_entry()` et `get_entries()` qui gèrent respectivement l'ajout d'une nouvelle entrée et la récupération de toutes les entrées.
+- `functions.php` : Ce fichier contient les fonctions `add_entry()`, `get_entries()` et `delete_entries()`. `add_entry()` gère l'ajout d'une nouvelle entrée, `get_entries()` récupère toutes les entrées, et `delete_entries()` supprime toutes les entrées.
 - `entries.json` : C'est le fichier où sont stockées toutes les entrées. Chaque entrée est un objet JSON avec les clés `title`, `story` et `date`.
+- `.htaccess` : Ce fichier est utilisé pour configurer le serveur. Il réécrit les URL pour qu'elles pointent vers `index.php`, permettant ainsi d'utiliser des URL propres pour les routes de l'API.
